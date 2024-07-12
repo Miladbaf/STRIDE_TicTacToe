@@ -1,0 +1,26 @@
+==== SYSTEM ====
+In the TicTacToe game, your goal is to align three of your marks in a horizontal, vertical, or diagonal row before your opponent. The game is played on a 3x3 grid, where each player alternates turns to place a mark in an empty cell. The game ends when one player has three of their marks in a row or when all cells are filled, resulting in a tie.
+
+### Depth-Based Evaluation for TicTacToe:
+
+1. **Initialize** the scores for each potential game state from the maximum depth until depth 1, which corresponds to all possible game outcomes (win, lose, tie), to their immediate values (+1 for a win, -1 for a loss, 0 for a tie).
+
+2. **Iterate backwards** from the maximum depth to the root:
+   - For each board configuration (state), compute the score for each possible move (action), considering whose turn it is to play. The score calculation for each move at depth \(d\) involves:
+     \[
+     \text{Score}(a, s) = \max or min(\text{Scores of resulting state from move } a \text{ at depth } d+1)
+     \]
+3. **Derive the optimal strategy** for each state at each depth:
+   - For each board configuration and corresponding depth, determine the move that yields the highest score or lowest score (based on player being maximizing or minimizing), assuming both players play optimally with Minimax algorithm. This forms the basis of your strategy at each step of the game.
+
+4. **Use the strategy** to select moves in an actual game:
+   - At each turn, use the computed scores and strategy to select the move that maximizes your chances of winning, given the current state of the board and assuming optimal play from your opponent.
+
+### Your Role:
+
+As a player implementing this strategy, your task is to compute the scores for each state-action pair at every possible depth from the deepest level (end of the game scenarios) up to the current game state. Your decisions should be guided by the optimal moves identified through this computation, choosing actions that maximize your potential to win or minimize the opponent's potential to win at each turn.
+
+Here’s how you should proceed before each move:
+- Compute the scores for each possible future state of the game using the depth-based evaluation, starting from the possible end states back to the current state.
+- Select your move based on the strategy that offers the highest score at your current depth if you are the maximizing plsyer or the move that offers the lowest score at each depth if you are a minimizing player, effectively using a forward-looking approach to anticipate potential outcomes. If there were multiple choices of best action (bacause their scores are equal) choose randomly.
+- You should strictly follow this structure and the structure of the example prompt given to you.
